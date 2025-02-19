@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List and Planner</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Todo List and Planner</h1>
+    </header>
+    <main>
+        <section id="task-input">
+            <h2>Add a new task</h2>
+            <form id="task-form">
+                <label for="task-name">Task Name:</label>
+                <input type="text" id="task-name" placeholder="Task name" required>
+                <label for="due-date">Due Date:</label>
+                <input type="date" id="due-date" required>
+                <label for="importance">Priority:</label>
+                <select id="importance" required>
+                    <option value="" disabled selected>Select priority</option>
+                    <option value="low" style="color: blue;">Low</option>
+                    <option value="medium" style="color: orange;">Medium</option>
+                    <option value="high" style="color: red">High</option>
+                </select>
+                <button type="submit">Add Task</button>
+            </form>
+        </section>
+        <section id="task-list">
+            <h2>Your Tasks</h2>
+            <ul id="tasks">
+                <!-- Task items will be added here -->
+            </ul>
+            <button id="toggle-completed-tasks">Show Completed Tasks</button>
+            <ul id="completed" class="hidden">
+                <!-- Completed task items will be added here -->
+            </ul>
+        </section>
+        <section id="pomodoro-timer">
+            <h2>Pomodoro Timer</h2>
+            <div id="timer-container">
+                <div id="timer-display">25:00</div>
+                <svg id="progress-ring" width="120" height="120">
+                    <circle id="progress-ring-circle" cx="60" cy="60" r="54" stroke-width="6" fill="transparent" />
+                </svg>
+            </div>
+            <button id="start-timer">Start</button>
+            <button id="reset-timer">Reset</button>
+        </section>
+        <section id="calendar">
+            <h2>Calendar - <span id="calendar-month"></span></h2>
+            <div id="calendar-grid">
+                <!-- Calendar grid will be generated here -->
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

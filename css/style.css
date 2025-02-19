@@ -1,0 +1,338 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #005f73; /* Updated */
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+
+main {
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#task-input, #task-list, #pomodoro-timer, #calendar {
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 48%; /* Updated */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+form label {
+    margin-top: 0.5rem;
+}
+
+form input, form select, form button {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form button {
+    background-color: #005f73; /* Updated */
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #004d5a; /* Updated */
+}
+
+#tasks, #completed {
+    list-style-type: none;
+    padding: 0;
+}
+
+#tasks li, #completed li {
+    background-color: #fff;
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s;
+}
+
+#tasks li:hover, #completed li:hover {
+    transform: scale(1.02);
+}
+
+#tasks li.low, #completed li.low {
+    border-left: 5px solid blue;
+}
+
+#tasks li.medium, #completed li.medium {
+    border-left: 5px solid orange;
+}
+
+#tasks li.high, #completed li.high {
+    border-left: 5px solid red;
+}
+
+#tasks li.completed, #completed li.completed {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.task-title {
+    font-weight: bold;
+}
+
+.task-due-date {
+    color: #888;
+}
+
+/* Style for round checkbox */
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #005f73; /* Updated */
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #005f73; /* Updated */
+    border: 2px solid #005f73; /* Updated */
+}
+
+input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Pomodoro Timer Styles */
+#pomodoro-timer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#timer-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin-bottom: 2rem; /* Updated */
+}
+
+#timer-display {
+    font-size: 2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#progress-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotate(-90deg);
+}
+
+#progress-ring-circle {
+    stroke: #005f73; /* Updated */
+    stroke-width: 6; /* Updated */
+    stroke-dasharray: 339.292; /* 2 * Math.PI * 54 */
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 1s linear;
+}
+
+#pomodoro-timer button {
+    background-color: #005f73; /* Updated */
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#pomodoro-timer button:hover {
+    background-color: #004d5a; /* Updated */
+}
+
+/* Calendar Styles */
+#calendar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.calendar-day {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.calendar-day .date {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.calendar-day .tasks {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+
+.calendar-day .tasks li {
+    background-color: #f4f4f4;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.calendar-day .tasks li.low {
+    border-left: 5px solid blue;
+}
+
+.calendar-day .tasks li.medium {
+    border-left: 5px solid orange;
+}
+
+.calendar-day .tasks li.high {
+    border-left: 5px solid red;
+}
+
+/* Hidden class for completed tasks */
+.hidden {
+    display: none;
+}
+
+/* Style for delete button */
+button {
+    background-color: #ff4d4d;
+    color: #fff;
+    border: none;
+    padding: 0.3rem 0.6rem;
+    margin-left: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ff1a1a;
+}
+
+/* Responsive Styles */
+@media (max-width: 1600px) {
+    #task-input, #task-list, #pomodoro-timer, #calendar {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1024px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #task-input, #task-list, #pomodoro-timer, #calendar {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #task-input, #task-list, #pomodoro-timer, #calendar {
+        width: 100%;
+    }
+
+    #task-input, #task-list, #pomodoro-timer, #calendar {
+        padding: 1rem;
+    }
+
+    #timer-container {
+        width: 100px;
+        height: 100px;
+    }
+
+    #timer-display {
+        font-size: 1.5rem;
+    }
+
+    #calendar-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #task-input, #task-list, #pomodoro-timer, #calendar {
+        width: 100%;
+    }
+
+    #task-input, #task-list, #pomodoro-timer, #calendar {
+        padding: 0.5rem;
+    }
+
+    #timer-container {
+        width: 80px;
+        height: 80px;
+    }
+
+    #timer-display {
+        font-size: 1.2rem;
+    }
+
+    #calendar-grid {
+        grid-template-columns: 1fr;
+    }
+}
